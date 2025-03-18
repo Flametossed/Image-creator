@@ -19,10 +19,13 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: '18'
-        cache: 'npm'
+        # Removed cache option that was causing the error
 
     - name: Install dependencies
       run: npm install
+
+    - name: Generate package-lock.json for future caching
+      run: npm install --package-lock-only
 
     - name: Package application
       run: npm run package
